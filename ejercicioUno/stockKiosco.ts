@@ -31,5 +31,27 @@ class Producto {
 }
 
 class Kiosco implements Inventario {
+  private productosDisponibles: Producto[] = [];
+  private productosVendidos: {producto: Producto; cantidad: number}[] = [];
+
+  venderProducto(): void {
+    
+  }
+
+  mostrarInventario(): void {
+    
+  }
+
+  mostrarVentas(): void {
+    
+  }
+  
+  cargarProducto(): void {
+    
+  }
+
+  eliminarProducto(): void {
+    
+  }
   
 }
