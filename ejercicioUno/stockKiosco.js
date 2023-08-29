@@ -14,6 +14,9 @@ var Producto = /** @class */ (function () {
     Producto.prototype.getStock = function () {
         return this.stock;
     };
+    Producto.prototype.reducirStock = function (cantidad) {
+        this.stock -= cantidad;
+    };
     Producto.prototype.getCodigo = function () {
         return this.codigo;
     };
@@ -37,12 +40,12 @@ var Kiosco = /** @class */ (function () {
         }
         if (productoEncontrado !== -1) {
             var productoEliminado = this.productosDisponibles.splice(productoEncontrado, 1)[0];
-            console.log("");
+            console.log("*********");
             console.log("Producto ".concat(productoEliminado.getNombre(), " (").concat(codigo, ") eliminado con exito del inventario."));
             console.log("");
         }
         else {
-            console.log("");
+            console.log("*********");
             console.log("Codigo (".concat(codigo, ") no encontrado, ingrese un codigo valido"));
             console.log("");
         }
@@ -58,9 +61,44 @@ var Kiosco = /** @class */ (function () {
         });
         console.log("");
     };
-    Kiosco.prototype.venderProducto = function () {
+    Kiosco.prototype.venderProducto = function (codigo, cantidad) {
+        var producto;
+        for (var _i = 0, _a = this.productosDisponibles; _i < _a.length; _i++) {
+            var productoEncontrado = _a[_i];
+            if (productoEncontrado.getCodigo() === codigo) {
+                producto = productoEncontrado;
+                break;
+            }
+        }
+        if (producto) {
+            if (producto.getStock() >= cantidad) {
+                producto.reducirStock(cantidad);
+                this.productosVendidos.push({ producto: producto, cantidad: cantidad });
+                console.log("*********");
+                console.log("Venta con exito:");
+                console.log("".concat(producto.getNombre(), ": ").concat(cantidad, " * $").concat(producto.getPrecio(), " = $").concat(cantidad * producto.getPrecio()));
+                console.log("");
+            }
+            else {
+                console.log("*********");
+                console.log("No tenemos suficiente stock, stock disponible: ".concat(producto.getStock()));
+                console.log("");
+            }
+        }
+        else {
+            console.log("*********");
+            console.log("Codigo (".concat(codigo, ") no encontrado"));
+            console.log("");
+        }
     };
     Kiosco.prototype.mostrarVentas = function () {
+        console.log("*********");
+        console.log("Ventas:");
+        this.productosVendidos.forEach(function (_a) {
+            var producto = _a.producto, cantidad = _a.cantidad;
+            console.log("Producto: ".concat(producto.getNombre(), ", Cantidad vendida: ").concat(cantidad));
+        });
+        console.log("*********");
     };
     return Kiosco;
 }());
@@ -69,13 +107,24 @@ var leche1 = new Producto("Leche", 500, 15, "001");
 var manteca1 = new Producto("Manteca", 400, 8, "002");
 var panLactal = new Producto("Pan Lactal", 750, 25, "003");
 // Creo el kiosko
-var kiosko = new Kiosco();
+var kiosco = new Kiosco();
 // Cargo los productos en el kiosko
-kiosko.cargarProducto(leche1);
-kiosko.cargarProducto(manteca1);
-kiosko.cargarProducto(panLactal);
+kiosco.cargarProducto(leche1);
+kiosco.cargarProducto(manteca1);
+kiosco.cargarProducto(panLactal);
 // Muestro inventario
-kiosko.mostrarInventario();
+kiosco.mostrarInventario();
 // Elimino un producto y vuelvo a mostrar inventario
-kiosko.eliminarProducto("002");
-kiosko.mostrarInventario();
+kiosco.eliminarProducto("002");
+kiosco.mostrarInventario();
+// Hago ventas, una correcta y otras provocando errores
+kiosco.venderProducto("001", 3);
+kiosco.venderProducto("024", 3); //codigo no existe
+kiosco.venderProducto("001", 300); //stock insuficiente
+// Muestro inventario nuevamente
+kiosco.mostrarInventario();
+// Hago mas ventas y las muestro
+kiosco.venderProducto("001", 3);
+kiosco.venderProducto("003", 2);
+kiosco.venderProducto("001", 2);
+kiosco.mostrarVentas();
