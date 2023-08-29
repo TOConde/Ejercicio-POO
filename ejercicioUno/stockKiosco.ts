@@ -122,8 +122,8 @@ class Kiosco implements Inventario {
     console.log("*********");
   }
 
-  cargarDesdeArreglo() {
-    
+  cargarDesdeArreglo(productos: Producto[]): void { // No implemente para que si encuentra un producto que ya estaba sume las cantidades
+    this.productosDisponibles = [...this.productosDisponibles, ...productos];
   }
 }
 
@@ -160,3 +160,22 @@ kiosco.venderProducto("001", 3);
 kiosco.venderProducto("003", 2);
 kiosco.venderProducto("001", 2);
 kiosco.mostrarVentas()
+
+
+console.log("")
+console.log("")
+console.log("")
+console.log("cosas nuevas")
+console.log("")
+console.log("")
+console.log("")
+
+
+// Agrego un arreglo y lo cargo, luego muestro el inventario
+const arregloDeProductos: Producto[] = [
+  new Producto("Chocolate", 1250, 60, "004"),
+  new Producto("Coca Cola", 850, 15, "005")
+]
+
+kiosco.cargarDesdeArreglo(arregloDeProductos);
+kiosco.mostrarInventario();

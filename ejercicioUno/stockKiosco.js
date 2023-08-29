@@ -1,3 +1,12 @@
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 var Producto = /** @class */ (function () {
     function Producto(nombre, precio, stock, codigo) {
         this.nombre = nombre;
@@ -100,6 +109,9 @@ var Kiosco = /** @class */ (function () {
         });
         console.log("*********");
     };
+    Kiosco.prototype.cargarDesdeArreglo = function (productos) {
+        this.productosDisponibles = __spreadArray(__spreadArray([], this.productosDisponibles, true), productos, true);
+    };
     return Kiosco;
 }());
 // Creo algunos productos
@@ -128,3 +140,18 @@ kiosco.venderProducto("001", 3);
 kiosco.venderProducto("003", 2);
 kiosco.venderProducto("001", 2);
 kiosco.mostrarVentas();
+console.log("");
+console.log("");
+console.log("");
+console.log("cosas nuevas");
+console.log("");
+console.log("");
+console.log("");
+// Agrego un arreglo y lo cargo, luego muestro el inventario
+var arregloDeProductos = [
+    new Producto("Chocolate", 1250, 60, "004"),
+    new Producto("Coca Cola", 850, 15, "005"),
+    new Producto("Leche", 500, 15, "001")
+];
+kiosco.cargarDesdeArreglo(arregloDeProductos);
+kiosco.mostrarInventario();
