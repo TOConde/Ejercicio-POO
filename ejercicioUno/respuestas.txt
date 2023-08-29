@@ -1,0 +1,14 @@
+.¿Cuál es el beneficio de usar un lenguaje con tipos (Typescript)?
+* Usar TypeScript brinda un elemento de seguridad extra al definir variables o funciones, como se explica en la ultima pregunta. Al modificar codigo es menos probable tener
+errores por cambiar el tipo de una variables, por ejemplo.
+
+.¿A qué se le llama variable interna? ¿Por qué internas?
+* A una variable definida dentro de una funcion, y es interna por que esta contenida dentro de esa funcion, fuera de la misma no es visible. 
+
+.Explicar la diferencia entre composición y herencia
+* Una composición es cuando una clase utiliza otra clase previamente definida, por ejemplo el codigo que hice del kiosco, la clase kiosco utiliza la clase producto. Mientras que
+herencia hereda atributos y metodos de otra clase, por ejemplo el caso de los "animales" que heredaban de "animalesDeZoo" en uno de los ejemplos en clase.
+
+.Explicar el mecanismo que provee TypeScript para manejar casos en donde los parámetros que le llegan a un método son inválidos
+* Esto esta relacionado con como se definen las variables o funciones, al asignarles un tipo si le llega otro que no es esperado da como resultado un error. Ejemplo defino una 
+funcion con un parametro de tipo number, pero al llamar y pasarle el parametro a la funcion le doy un tipo string, da error.
