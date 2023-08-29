@@ -49,12 +49,14 @@ class Kiosco implements Inventario {
   }
 
   mostrarInventario(): void {
+    console.log("");
     console.log("*********");
     console.log("Tenemos en stock:");
     console.log("");
-    this.productosDisponibles.forEach(producto =>
-      console.log(`Codigo: ${producto.getCodigo}, Producto: ${producto.getNombre}, Precio: ${producto.getPrecio}, Cantidad: ${producto.getStock}`)      
-    );
+    this.productosDisponibles.forEach(producto => {
+      console.log(`Codigo: ${producto.getCodigo()}, Producto: ${producto.getNombre()}, Precio: ${producto.getPrecio()}, Cantidad: ${producto.getStock()}`);
+      console.log("");  
+    });
     console.log("");
   }
 
@@ -67,3 +69,19 @@ class Kiosco implements Inventario {
   }
 
 }
+
+// Creo algunos productos
+const leche1 = new Producto("Leche", 500, 15, "001");
+const manteca1 = new Producto("Manteca", 400, 8, "002");
+const panLactal = new Producto("Pan Lactal", 750, 25, "003");
+
+// Creo el kiosko
+const kiosko = new Kiosco();
+
+// Cargo los productos en el kiosko
+kiosko.cargarProducto(leche1);
+kiosko.cargarProducto(manteca1);
+kiosko.cargarProducto(panLactal);
+
+// Muestro inventario
+kiosko.mostrarInventario();
