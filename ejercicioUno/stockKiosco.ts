@@ -1,6 +1,6 @@
 interface Inventario {
   cargarProducto(producto: Producto): void;
-  eliminarProducto(): void;
+  eliminarProducto(codigo: string);
   mostrarInventario(): void;
   venderProducto(): void;
   mostrarVentas(): void;  
@@ -44,8 +44,26 @@ class Kiosco implements Inventario {
     this.productosDisponibles.push(producto);
   }
 
-  eliminarProducto(): void {
-    
+  eliminarProducto(codigo: string) {
+    let productoEncontrado: number = -1;
+
+    for (let i = 0; i < this.productosDisponibles.length; i++) {
+      if (this.productosDisponibles[i].getCodigo() === codigo) {
+        productoEncontrado = i;
+        break 
+      }
+    }
+
+    if (productoEncontrado !== -1) {
+      const productoEliminado = this.productosDisponibles.splice(productoEncontrado, 1)[0];
+      console.log("");
+      console.log(`Producto ${productoEliminado.getNombre()} (${codigo}) eliminado con exito del inventario.`);
+      console.log("");
+    } else {
+      console.log("");
+      console.log(`Codigo (${codigo}) no encontrado, ingrese un codigo valido`)
+      console.log("");
+    }
   }
 
   mostrarInventario(): void {
@@ -84,4 +102,8 @@ kiosko.cargarProducto(manteca1);
 kiosko.cargarProducto(panLactal);
 
 // Muestro inventario
+kiosko.mostrarInventario();
+
+// Elimino un producto y vuelvo a mostrar inventario
+kiosko.eliminarProducto("002");
 kiosko.mostrarInventario();

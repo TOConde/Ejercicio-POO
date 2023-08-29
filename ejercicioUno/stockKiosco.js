@@ -27,7 +27,25 @@ var Kiosco = /** @class */ (function () {
     Kiosco.prototype.cargarProducto = function (producto) {
         this.productosDisponibles.push(producto);
     };
-    Kiosco.prototype.eliminarProducto = function () {
+    Kiosco.prototype.eliminarProducto = function (codigo) {
+        var productoEncontrado = -1;
+        for (var i = 0; i < this.productosDisponibles.length; i++) {
+            if (this.productosDisponibles[i].getCodigo() === codigo) {
+                productoEncontrado = i;
+                break;
+            }
+        }
+        if (productoEncontrado !== -1) {
+            var productoEliminado = this.productosDisponibles.splice(productoEncontrado, 1)[0];
+            console.log("");
+            console.log("Producto ".concat(productoEliminado.getNombre(), " (").concat(codigo, ") eliminado con exito del inventario."));
+            console.log("");
+        }
+        else {
+            console.log("");
+            console.log("Codigo (".concat(codigo, ") no encontrado, ingrese un codigo valido"));
+            console.log("");
+        }
     };
     Kiosco.prototype.mostrarInventario = function () {
         console.log("");
@@ -57,4 +75,7 @@ kiosko.cargarProducto(leche1);
 kiosko.cargarProducto(manteca1);
 kiosko.cargarProducto(panLactal);
 // Muestro inventario
+kiosko.mostrarInventario();
+// Elimino un producto y vuelvo a mostrar inventario
+kiosko.eliminarProducto("002");
 kiosko.mostrarInventario();
