@@ -1,0 +1,12 @@
+• ¿Qué pasa cuando se corre el comando “tsc”?
+* Se compila el codigo typescript a javascript.
+
+• ¿Cómo está organizada una clase?
+* Con metodos y atributos.
+
+• ¿Es correcto que un método auxiliar de una clase sea público? ¿Por qué?
+* Si por que puede ser utilizado por otra clase, pero no siempre tiene que ser publico, en situaciones no es correcto y debe ser privado.
+
+• Enumerar las características de una interfaz
+* Se definen metodos que luego son implementados por la clase que utiliza la interfaz.
+Estos metodos que se definen en la interfaz deben ser utilizados si o si en la clase e implementados.
