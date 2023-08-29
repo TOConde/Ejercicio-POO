@@ -121,6 +121,10 @@ class Kiosco implements Inventario {
     });
     console.log("*********");
   }
+
+  cargarDesdeArreglo() {
+    
+  }
 }
 
 // Creo algunos productos
