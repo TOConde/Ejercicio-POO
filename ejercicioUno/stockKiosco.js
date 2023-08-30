@@ -150,8 +150,7 @@ console.log("");
 // Agrego un arreglo y lo cargo, luego muestro el inventario
 var arregloDeProductos = [
     new Producto("Chocolate", 1250, 60, "004"),
-    new Producto("Coca Cola", 850, 15, "005"),
-    new Producto("Leche", 500, 15, "001")
+    new Producto("Coca Cola", 850, 15, "005")
 ];
 kiosco.cargarDesdeArreglo(arregloDeProductos);
 kiosco.mostrarInventario();
