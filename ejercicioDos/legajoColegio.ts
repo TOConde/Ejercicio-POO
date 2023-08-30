@@ -22,7 +22,7 @@ class Persona {
   }
 }
 
-class Alumno extends Persona{
+class Alumno extends Persona {
   private examenes: Examen[] = [];
 
   constructor(dni: string, nombre: string, edad: number) {
